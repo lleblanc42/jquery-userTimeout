@@ -1,4 +1,4 @@
-# User Timeout
+# User Timeout [![Build Status](https://travis-ci.org/lleblanc42/jquery-userTimeout.svg?branch=master)](https://travis-ci.org/lleblanc42/jquery-userTimeout)
 
 This handy little plugin will integrate nicely into your websites user system to prompt the user when their session is timing out with either a modal (utilizing Twitter Bootstrap) or a dialog (utilizing jQuery UI). All it needs to run is one of the two dependencies previously mentioned and a URL to the page that logs them off of your system.
 
@@ -41,7 +41,7 @@ Make sure to change the logouturl option to point to the web page that will prop
 | force | 300000 | time in miliseconds | The time in which the user has to respond to the notification if notify is set to true |
 | ui | 'auto' | 'auto', 'bootstrap' or 'jqueryui' | If set to auto, it will check to see if either the Twitter Bootstrap 3 or jQuery UI libraries are loaded, or will utilize whatever is passed as an argument (prioritizes bootstrap over jQuery UI) |
 | debug | false | true or false | If set to true, it will display an alert if the plugin is misconfigured |
-| modalTitle | 'Session Timeout' | plain text | The text that gets put in the title of the notification |
+| modalTitle | 'Session Timeout | plain text | The text that gets put in the title of the notification |
 | modalBody | 'You\'re being timed out due to inactivity. Please choose to stay signed in or to logoff. Otherwise, you will logged off automatically.' | plain text | The text that gets put into the body of the notification |
 
 The plugin comes with some basic error checking. It will display an alert box if the logouturl was not supplied or if either the jQuery UI or Twitter Bootstrap 3 libraries were not found. The plugin will tell the user they need to configure the plugin if the debug option is set to true, following with killing the plugin to allow the user to coninue their session and not be affected with the misconfiguration.
@@ -52,6 +52,7 @@ _(Coming soon)_
 ## Feature Release Plans
 - [ ] Detailed comments in the source code (apologize for lack therof)
 - [ ] Comprehensive testing of jQuery library compatibility
+- [ ] Include proper QUnit testing
 - [x] Check if site utilizes Twitter Bootstrap
 - [x] Check if site utilizes jQuery UI
 - [x] Add debug mode
