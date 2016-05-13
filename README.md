@@ -50,7 +50,7 @@ The plugin comes with some basic error checking. It will display an alert box if
 _(Coming soon)_
 
 ## Feature Release Plans
-- [ ] Detailed comments in the source code (apologize for lack therof)
+- [x] Detailed comments in the source code (apologize for lack therof)
 - [ ] Comprehensive testing of jQuery library compatibility
 - [ ] Include proper QUnit testing
 - [x] Check if site utilizes Twitter Bootstrap
@@ -60,6 +60,13 @@ _(Coming soon)_
 - [x] Add countdown timer
 
 ## Release History
+v0.3.0
+* Cleaned up some of the code
+* Fixed a few minor bugs
+* Added comments to the functions
+* Added support for console errors if debugging is off
+* Included focus as a document event
+
 v0.2.0
 * Checks if either of the required libraries are installed
 * Added a debug option
