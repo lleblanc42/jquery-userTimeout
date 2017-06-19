@@ -50,16 +50,24 @@ The plugin comes with some basic error checking. It will display an alert box if
 _(Coming soon)_
 
 ## Feature Release Plans
-- [x] Detailed comments in the source code (apologize for lack therof)
 - [ ] Comprehensive testing of jQuery library compatibility
 - [ ] Include proper QUnit testing
+- [ ] Add callbacks
+- [ ] Add checks to prevent overlapping modals
+- [x] Detailed comments in the source code (apologize for lack therof)
 - [x] Check if site utilizes Twitter Bootstrap
 - [x] Check if site utilizes jQuery UI
 - [x] Add debug mode
 - [x] Add referer capabilities
 - [x] Add countdown timer
+- [x] Create more reliable timer
 
 ## Release History
+v0.4.0
+* Cleaned up the code
+* Completely rewrote the timer logic to make it more relaible
+* Removed some redundant code
+
 v0.3.0
 * Cleaned up some of the code
 * Fixed a few minor bugs
