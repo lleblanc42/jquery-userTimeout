@@ -38,7 +38,7 @@ Make sure to change the logouturl option to point to the web page that will prop
 | notify | true | true or false | If set to false, no notification (modal or dialog) will be displayed to the user, it will just log the user off |
 | timer | true | true or false | Includes a countdown timer on the 'Stay Logged In' button (only available for bootstrap) |
 | session | 600000 | time in miliseconds | The time in which the user has until the notification displays or is logged off if notify is set to false |
-| force | 300000 | time in miliseconds | The time in which the user has to respond to the notification if notify is set to true |
+| force | 10000 | time in miliseconds | The time in which the user has to respond to the notification if notify is set to true |
 | ui | 'auto' | 'auto', 'bootstrap' or 'jqueryui' | If set to auto, it will check to see if either the Twitter Bootstrap 3 or jQuery UI libraries are loaded, or will utilize whatever is passed as an argument (prioritizes bootstrap over jQuery UI) |
 | debug | false | true or false | If set to true, it will display an alert if the plugin is misconfigured |
 | modalTitle | 'Session Timeout | plain text | The text that gets put in the title of the notification |
@@ -54,6 +54,7 @@ _(Coming soon)_
 - [ ] Include proper QUnit testing
 - [ ] Add callbacks
 - [ ] Add checks to prevent overlapping modals
+- [ ] Add new customization options for the modal/dialog buttons
 - [x] Detailed comments in the source code (apologize for lack therof)
 - [x] Check if site utilizes Twitter Bootstrap
 - [x] Check if site utilizes jQuery UI
@@ -67,6 +68,7 @@ v0.4.0
 * Cleaned up the code
 * Completely rewrote the timer logic to make it more relaible
 * Removed some redundant code
+* Updated force default option to 10 seconds instead of 5 minutes (made more sense)
 
 v0.3.0
 * Cleaned up some of the code

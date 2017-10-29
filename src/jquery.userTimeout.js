@@ -3,7 +3,7 @@
  * @version: v0.4.0
  * @author: Luke LeBlanc
  *
- * Copyright (c) 2016 Luke LeBlanc
+ * Copyright (c) 2017 Luke LeBlanc
  *
  * GNU General Public License v3 (http://www.gnu.org/licenses/)
  *
@@ -22,7 +22,6 @@
 	'use strict';
 
 	$.fn.userTimeout = function (opts) {
-
 		var $defaults = {
 			logouturl: null,                   // ULR to redirect to, to log user out
 			referer: false,                    // URL Referer - false, auto or a passed URL
@@ -30,7 +29,7 @@
 			notify: true,                      // Toggle for notification of session ending
 			timer: true,                       // Toggle for enabling the countdown timer
 			session: 600000,                   // 10 Minutes in Milliseconds, then notification of logout
-			force: 300000,                     // 5 Minutes in Milliseconds, then logout
+			force: 10000,                      // 10 Seconds in Milliseconds, then logout
 			ui: 'auto',                        // Model Dialog selector (auto, bootstrap, jqueryui)
 			debug: false,                      // Shows alerts
 			modalTitle: 'Session Timeout',     // Modal Title
@@ -68,6 +67,10 @@
 			}
 
 			startTimer();
+
+			$(document).on('focus click mousemove mousedown keyup scroll keypress', function () {
+				startTimer();
+			});
 		};
 
 		/**
@@ -84,7 +87,6 @@
 		var startTimer = function (type) {
 			clearTimeout($timeoutTimer);
 			clearTimeout($logoutTimer);
-			clearTimeout($countDownTimer);
 
 			$startTime = new Date().getTime();
 			$elapsedTime = 0;
@@ -92,18 +94,13 @@
 
 			switch (type) {
 				case 'logout':
-					$countDownTimer = Math.floor(($options.force / 1000) % 60);
-					$('#countdowntimer').html($countDownTimer);
-					$logoutTimer = setTimeout(checkTimer(type), 100);
+					$countDownTimer = Math.floor($options.force / 1000);
+					$logoutTimer = setTimeout(function () { checkTimer(type); }, 100);
 					break;
 				default:
-					$timeoutTimer = setTimeout(checkTimer(type), 100);
+					$timeoutTimer = setTimeout(function () { checkTimer(type); }, 100);
 					break;
 			}
-
-			$(document).on('focus click mousemove mousedown keyup scroll keypress', function () {
-				startTimer(type);
-			});
 		};
 
 		/**
@@ -126,33 +123,29 @@
 			switch (type) {
 				case 'logout':
 					if ($elapsedTime === $options.force) {
-						clearTimeout($logoutTimer);
-						clearTimeout($countDownTimer);
 						logout();
 					} else {
 						$elapsedCounterTime += 100;
 
-						if ($elapsedCounterTime === 1000) {
+						if ($elapsedCounterTime === 1000 && $countDownTimer !== 0) {
 							$countDownTimer -= 1;
 							$('#countdowntimer').html($countDownTimer);
 							$elapsedCounterTime = 0;
 						}
 
-						$logoutTimer = setTimeout(checkTimer(type), (100 - $timeDiff));
+						$logoutTimer = setTimeout(function () { checkTimer(type); }, (100 - $timeDiff));
 					}
 
 					break;
 				default:
 					if ($elapsedTime === $options.session) {
-						clearTimeout($timeoutTimer);
-
 						if ($options.notify === true) {
 							modal();
 						} else {
 							logout();
 						}
 					} else {
-						$timeoutTimer = setTimeout(checkTimer(type), (100 - $timeDiff));
+						$timeoutTimer = setTimeout(function () { checkTimer(type); }, (100 - $timeDiff));
 					}
 
 					break;
@@ -242,6 +235,10 @@
 		var modal = function () {
 			startTimer('logout');
 
+			$(document).on('focus click mousemove mousedown keyup scroll keypress', function () {
+				startTimer('logout');
+			});
+
 			if ($modalUI === 'bootstrap') {
 				var $container, $dialog, $content, $header, $body, $footer, $logoutBtn;
 
@@ -317,7 +314,6 @@
 
 			clearTimeout($timeoutTimer);
 			clearTimeout($logoutTimer);
-			clearTimeout($countDownTimer);
 
 			if ($options.referer !== false) {
 				if ($options.referer === 'auto') {
@@ -331,7 +327,7 @@
 				$referralURL = $options.logouturl;
 			}
 
-			return window.location = $referralURL;
+			return window.location.replace($referralURL);
 		};
 
 		/**
