@@ -66,6 +66,9 @@ _(Coming soon)_
 - [x] Create more reliable timer
 
 ## Release History
+v0.5.1
+* Fixed a bug where it wasn't properly resetting the startTimer bind which caused issues with displaying modals/dialogs multiple times
+
 v0.5.0
 * Added two new options to allow customization of the button text
 

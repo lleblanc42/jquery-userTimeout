@@ -1,6 +1,6 @@
 /*
  * jquery.userTimeout.js
- * @version: v0.5.0
+ * @version: v0.5.1
  * @author: Luke LeBlanc
  *
  * Copyright (c) 2017 Luke LeBlanc
@@ -270,8 +270,12 @@
 				});
 
 				$($container).on('hide.bs.modal', function () {
-					startTimer();
 					$($container).remove();
+					startTimer();
+
+					$(document).on('focus click mousemove mousedown keyup scroll keypress', function () {
+						startTimer();
+					});
 				});
 
 				$($logoutBtn).on('click', function () {
@@ -283,8 +287,12 @@
 				var $jqueryModal = '<div id="notifyLogout"><p>' + $options.modalBody + '</p></div>';
 
 				$jqueryModalOptions[$options.modalStayLoggedBtn] = function (){
-					startTimer();
 					$jqueryLogout.dialog('close');
+					startTimer();
+
+					$(document).on('focus click mousemove mousedown keyup scroll keypress', function () {
+						startTimer();
+					});
 				};
 
 				$jqueryModalOptions[$options.modalLogOffBtn] = function (){
