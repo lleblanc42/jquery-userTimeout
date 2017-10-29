@@ -43,6 +43,8 @@ Make sure to change the logouturl option to point to the web page that will prop
 | debug | false | true or false | If set to true, it will display an alert if the plugin is misconfigured |
 | modalTitle | 'Session Timeout | plain text | The text that gets put in the title of the notification |
 | modalBody | 'You\'re being timed out due to inactivity. Please choose to stay signed in or to logoff. Otherwise, you will logged off automatically.' | plain text | The text that gets put into the body of the notification |
+| modalLogOffBtn | 'Log Off' | plain text | The log off button text in the notification |
+| modalStayLoggedBtn | 'Stay Logged In' | plain text | The stay logged in button text in the notification |
 
 The plugin comes with some basic error checking. It will display an alert box if the logouturl was not supplied or if either the jQuery UI or Twitter Bootstrap 3 libraries were not found. The plugin will tell the user they need to configure the plugin if the debug option is set to true, following with killing the plugin to allow the user to coninue their session and not be affected with the misconfiguration.
 
@@ -54,7 +56,7 @@ _(Coming soon)_
 - [ ] Include proper QUnit testing
 - [ ] Add callbacks
 - [ ] Add checks to prevent overlapping modals
-- [ ] Add new customization options for the modal/dialog buttons
+- [x] Add new customization options for the modal/dialog buttons
 - [x] Detailed comments in the source code (apologize for lack therof)
 - [x] Check if site utilizes Twitter Bootstrap
 - [x] Check if site utilizes jQuery UI
@@ -64,6 +66,9 @@ _(Coming soon)_
 - [x] Create more reliable timer
 
 ## Release History
+v0.5.0
+* Added two new options to allow customization of the button text
+
 v0.4.0
 * Cleaned up the code
 * Completely rewrote the timer logic to make it more relaible

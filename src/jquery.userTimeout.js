@@ -1,6 +1,6 @@
 /*
  * jquery.userTimeout.js
- * @version: v0.4.0
+ * @version: v0.5.0
  * @author: Luke LeBlanc
  *
  * Copyright (c) 2017 Luke LeBlanc
@@ -23,17 +23,19 @@
 
 	$.fn.userTimeout = function (opts) {
 		var $defaults = {
-			logouturl: null,                   // ULR to redirect to, to log user out
-			referer: false,                    // URL Referer - false, auto or a passed URL
-			refererName: 'refer',              // Name of the passed referal in the URL
-			notify: true,                      // Toggle for notification of session ending
-			timer: true,                       // Toggle for enabling the countdown timer
-			session: 600000,                   // 10 Minutes in Milliseconds, then notification of logout
-			force: 10000,                      // 10 Seconds in Milliseconds, then logout
-			ui: 'auto',                        // Model Dialog selector (auto, bootstrap, jqueryui)
-			debug: false,                      // Shows alerts
-			modalTitle: 'Session Timeout',     // Modal Title
-			modalBody: 'You\'re being timed out due to inactivity. Please choose to stay signed in or to logoff. Otherwise, you will logged off automatically.'  // Modal body content
+			logouturl: null,                   		// ULR to redirect to, to log user out
+			referer: false,                    		// URL Referer - false, auto or a passed URL
+			refererName: 'refer',              		// Name of the passed referal in the URL
+			notify: true,                      		// Toggle for notification of session ending
+			timer: true,                       		// Toggle for enabling the countdown timer
+			session: 600000,                   		// 10 Minutes in Milliseconds, then notification of logout
+			force: 10000,                      		// 10 Seconds in Milliseconds, then logout
+			ui: 'auto',                        		// Model Dialog selector (auto, bootstrap, jqueryui)
+			debug: false,                      		// Shows alerts
+			modalTitle: 'Session Timeout',     		// Modal Title
+			modalBody: 'You\'re being timed out due to inactivity. Please choose to stay signed in or to logoff. Otherwise, you will logged off automatically.',  // Modal body content
+			modalLogOffBtn: 'Log Off',		   		// Modal log off button text
+			modalStayLoggedBtn: 'Stay Logged In'	// Modal stay logged in button text
 		};
 
 		var $options = $.extend($defaults, opts || {});
@@ -249,12 +251,12 @@
 				$body = $('<div class="modal-body">' + $options.modalBody + '</div>');
 
 				if ($options.timer === true) {
-					$footer = $('<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Stay Logged In (<span id="countdowntimer">' + $countDownTimer + '</span>)</button></div>');
+					$footer = $('<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">' +  $options.modalStayLoggedBtn + ' (<span id="countdowntimer">' + $countDownTimer + '</span>)</button></div>');
 				} else {
-					$footer = $('<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Stay Logged In</button></div>');
+					$footer = $('<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">' +  $options.modalStayLoggedBtn + '</button></div>');
 				}
 
-				$logoutBtn = $('<button type="button" class="btn btn-default" id="logoff">Log Off</button>');
+				$logoutBtn = $('<button type="button" class="btn btn-default" id="logoff">' + $options.modalLogOffBtn + '</button>');
 
 				$content.append($header, $body, $footer);
 				$footer.prepend($logoutBtn);
@@ -280,12 +282,12 @@
 				var $jqueryModalOptions = {};
 				var $jqueryModal = '<div id="notifyLogout"><p>' + $options.modalBody + '</p></div>';
 
-				$jqueryModalOptions['Stay Logged In'] = function (){
+				$jqueryModalOptions[$options.modalStayLoggedBtn] = function (){
 					startTimer();
 					$jqueryLogout.dialog('close');
 				};
 
-				$jqueryModalOptions['Log Off'] = function (){
+				$jqueryModalOptions[$options.modalLogOffBtn] = function (){
 					logout();
 				};
 
