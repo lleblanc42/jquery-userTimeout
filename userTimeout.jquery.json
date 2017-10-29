@@ -1,6 +1,6 @@
 {
   "name": "userTimeout",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "title": "jQuery userTimeout",
   "description": "This handy little plugin will integrate nicely into your websites user system to prompt the user when their session is timing out with either a modal (utilizing Twitter Bootstrap) or a dialog (utilizing jQuery UI). All it needs to run is one of the two dependencies previously mentioned and a URL to the page that logs them off of your system.",
   "homepage": "https://github.com/lleblanc42/jquery-userTimeout",
