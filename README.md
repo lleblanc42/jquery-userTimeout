@@ -65,7 +65,10 @@ _(Coming soon)_
 - [x] Add countdown timer
 - [x] Create more reliable timer
 
-## Release History
+## Release History\
+v0.5.2
+* Rebuilt dist files
+
 v0.5.1
 * Fixed a bug where it wasn't properly resetting the startTimer bind which caused issues with displaying modals/dialogs multiple times
 
